@@ -5,15 +5,23 @@
     <title>My Website</title>
     <style>
         body {
-            background-color: #1a1a1a; /* Dark background to match games */
+            background-color: #1a1a1a;
             color: white;
             font-family: sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            text-align: center;
         }
 
         .game-container {
@@ -22,17 +30,36 @@
             border-radius: 8px;
             overflow: hidden;
             background-color: #000;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        /* Maintain 4:3 aspect ratio */
+        .game-container::before {
+            content: "";
+            display: block;
+            padding-top: 75%; /* 600/800 = 0.75 = 75% */
         }
 
         iframe {
-            /* Set these to match your Godot Project Export settings */
-            width: 800px;
-            height: 600px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border: none;
         }
 
-        h1 {
-            margin-bottom: 20px;
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
